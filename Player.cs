@@ -38,6 +38,23 @@ namespace Slime
                     SlimeKills += 1;
                 }
             }
+            if (target.netID == NPCID.KingSlime)
+            {
+                if (damage >= target.life)
+                {
+                    SlimeKills += 90;
+                }
+            }
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (target.netID == (NPCID.BlueSlime) || target.netID == NPCID.GreenSlime)
+            {
+                if (damage >= target.life)
+                {
+                    SlimeKills += 1;
+                }
+            }
         }
     }
 }

@@ -12,9 +12,15 @@ namespace Slime.Items
 {
     class SlimeSword : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Slime Sword");
+            Tooltip.SetDefault("Does more damage the more slimes you kills");
+        }
         public override void SetDefaults()
         {
             item.damage = 20;
+            item.crit = 15;
             item.useTime = 20;
             item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;
