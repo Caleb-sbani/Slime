@@ -19,6 +19,7 @@ namespace Slime
             ModPacket packet = mod.GetPacket();
             packet.Write(SlimeKills);
             packet.Send(toWho, fromWho);
+
         }
         public override TagCompound Save()
         {
@@ -44,6 +45,10 @@ namespace Slime
                 {
                     SlimeKills += 90;
                 }
+            }
+            if(SlimeKills >= maxSlimeKills)
+            {
+                SlimeKills = maxSlimeKills;
             }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
