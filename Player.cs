@@ -55,6 +55,13 @@ namespace Slime
                     SlimeKills += 1;
                 }
             }
+            if (target.netID == NPCID.KingSlime)
+            {
+                if (damage >= target.life)
+                {
+                    SlimeKills += 90;
+                }
+            }
         }
     }
 }
