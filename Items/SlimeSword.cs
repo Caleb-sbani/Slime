@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria;
+using Slime;
 
 namespace Slime.Items
 {
@@ -16,6 +18,10 @@ namespace Slime.Items
             item.useTime = 20;
             item.useAnimation = 20;
             item.useStyle = ItemUseStyleID.SwingThrow;
+        }
+        public override void ModifyWeaponDamage(Terraria.Player player, ref float add, ref float mult)
+        {
+            item.damage = 20 + player.GetModPlayer<Player>().SlimeKills / 90;
         }
         public override void AddRecipes()
         {
