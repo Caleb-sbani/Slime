@@ -32,6 +32,7 @@ namespace Slime.NPCs
             npc.value = 25f;
             npc.buffImmune[BuffID.Poisoned] = true;
             npc.buffImmune[BuffID.Confused] = false;
+            npc.netID = NPCID.GreenSlime;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
