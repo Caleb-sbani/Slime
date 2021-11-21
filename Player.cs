@@ -14,23 +14,29 @@ namespace Slime
     {
         public const int maxSlimeKills = 9000;
         public int SlimeKills;
+        public bool KingSlimeKilled = false;
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
-            ModPacket packet = mod.GetPacket();
-            packet.Write(SlimeKills);
-            packet.Send(toWho, fromWho);
+            ModPacket packet1 = mod.GetPacket();
+            packet1.Write(SlimeKills);
+            packet1.Send(toWho, fromWho);
+            ModPacket packet2 = mod.GetPacket();
+            packet2.Write(KingSlimeKilled);
+            packet2.Send(toWho, fromWho);
 
         }
         public override TagCompound Save()
         {
             return new TagCompound
             {
-                { "SlimeKills", SlimeKills }
+                { "SlimeKills", SlimeKills },
+                { "KingSlimeKilled", KingSlimeKilled}
             };
         }
         public override void Load(TagCompound tag)
         {
             SlimeKills = tag.GetInt("SlimeKills");
+            KingSlimeKilled = tag.GetBool("KingSlimeKilled");
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -44,6 +50,7 @@ namespace Slime
                 if (damage >= target.life)
                 {
                     SlimeKills += 90;
+                    KingSlimeKilled = true;
                 }
             }
             if(SlimeKills >= maxSlimeKills)
@@ -65,6 +72,7 @@ namespace Slime
                 if (damage >= target.life)
                 {
                     SlimeKills += 90;
+                    KingSlimeKilled = true;
                 }
             }
         }
