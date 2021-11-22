@@ -22,9 +22,9 @@ namespace Slime.NPCs.bosses
             npc.width = 160;
             npc.height = 160;
             npc.aiStyle = -2; //-2 == unique ai style
-            npc.damage = 15;
-            npc.defense = 5;
-            npc.knockBackResist = 20f;
+            npc.damage = 30;
+            npc.defense = 8;
+            npc.knockBackResist = 0.2f;
             npc.lifeMax = 5000;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
@@ -33,6 +33,7 @@ namespace Slime.NPCs.bosses
             npc.buffImmune[BuffID.Confused] = false;
             npc.netID = NPCID.KingSlime;
             npc.noGravity = true;
+            npc.noTileCollide = true;
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -49,6 +50,17 @@ namespace Slime.NPCs.bosses
             {
                 Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 192, 2 * hitDirection, -2f, 100, new Color(200, 40, 40, 100), 1f);
                 dust.noGravity = true;
+            }
+        }
+        public override void NPCLoot()
+        {//ruby Drops!
+            for (int x = Main.rand.Next(5); x < 10; x++)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Ruby);                
+            }
+            for (int x = Main.rand.Next(20); x < 50; x++)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Gel);
             }
         }
 
@@ -121,7 +133,7 @@ namespace Slime.NPCs.bosses
             #region Neutral
             else if (AI_State == State_Neutral)
             {
-                npc.velocity *= 0.95f;
+                npc.velocity *= 0.97f;
                 AI_Timer++;
                 if (AI_Timer > 60)
                 {
@@ -133,7 +145,7 @@ namespace Slime.NPCs.bosses
             else if (AI_State == State_Agressive_Launch)
             {
                 AI_Timer++;
-                npc.velocity *= 0.95f;
+                npc.velocity *= 0.98f;
                 if (AI_Timer == 1)
                 {
                     Vector2 moveTo = new Vector2(npc.targetRect.X, npc.targetRect.Y);
