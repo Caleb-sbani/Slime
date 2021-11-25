@@ -16,7 +16,7 @@ namespace Slime.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Suspicious Looking Slime");
+            DisplayName.SetDefault("Suspicious Looking Sl-eye-me");
             Tooltip.SetDefault("Summons the Slime King's avenger");
         }
         public override void SetDefaults()

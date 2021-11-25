@@ -14,13 +14,13 @@ namespace Slime.NPCs.bosses
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Slime Of Cthulu");
+            DisplayName.SetDefault("Sl-eye-me Of Cthulu");
         }
         public override void SetDefaults()
         {
             npc.boss = true;
-            npc.width = 160;
-            npc.height = 160;
+            npc.width = 300;
+            npc.height = 216;
             npc.aiStyle = -2; //-2 == unique ai style
             npc.damage = 30;
             npc.defense = 8;
@@ -194,9 +194,12 @@ namespace Slime.NPCs.bosses
         }
         public override void FindFrame(int frameHeight)
         {
-            npc.spriteDirection = -npc.direction;
-            double direction = Math.Asin((npc.velocity.Y / Math.Sqrt(npc.velocity.X * npc.velocity.X + npc.velocity.Y * npc.velocity.Y)));
-            npc.rotation = (float)direction;
+            if (AI_State != State_Spin)
+            {
+                npc.spriteDirection = -npc.direction;
+                double direction = Math.Asin((npc.velocity.Y / Math.Sqrt(npc.velocity.X * npc.velocity.X + npc.velocity.Y * npc.velocity.Y)));
+                npc.rotation = (float)direction;
+            }
         }
 
     }
